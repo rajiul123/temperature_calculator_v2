@@ -1,0 +1,131 @@
+temp = {}
+count = 0
+total = 0
+date = ''
+
+while True:
+    try:
+        year = int(input("Year: "))
+        if year >= 1584 and year < 9999:
+            break
+        else:
+            print("Enter a valid numerical value!")
+    except:
+        print("Enter a valid numerical value!")
+
+while True:
+    month = input("Month: ")
+    if month.upper() in ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']:
+        break
+    else:
+        print("Enter a valid name of month!")
+
+if month.upper() == 'FEBRUARY':
+    if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
+        for i in range(29):
+            if i+1 == 1:
+                date = str(i+1) + 'st ' + month.title() + ', ' + str(year)
+            elif i+1 == 2:
+                date = str(i+1) + 'nd ' + month.title() + ', ' + str(year)
+            elif i+1 == 3:
+                date = str(i+1) + 'rd ' + month.title() + ', ' + str(year)
+            else:
+                date = str(i+1) + 'th ' + month.title() + ', ' + str(year)
+
+            while True:
+                try:    
+                    temperature = float(input('Highest temperature for ' + month.title() + '-' + str(i+1) + ': '))
+                    if temperature >= -273.15: break
+                    else: print('This temperature is below absolute zero. Try again.')
+                except:
+                    print("Enter a valid numerical value!")
+
+
+            temp[date] = temperature
+
+            count += 1
+            total += temperature
+
+    else:
+        for i in range(28):
+            if i+1 == 1:
+                date = str(i+1) + 'st ' + month.title() + ', ' + str(year)
+            elif i+1 == 2:
+                date = str(i+1) + 'nd ' + month.title() + ', ' + str(year)
+            elif i+1 == 3:
+                date = str(i+1) + 'rd ' + month.title() + ', ' + str(year)
+            else:
+                date = str(i+1) + 'th ' + month.title() + ', ' + str(year)
+
+            while True:
+                try:    
+                    temperature = float(input('Temperature for ' + month.title() + '-' + str(i+1) + ': '))
+                    if temperature >= -273.15: break
+                    else: print('This temperature is below absolute zero. Try again.')
+                except:
+                    print("Enter a valid numerical value!")
+                
+            temp[date] = temperature
+
+            count += 1
+            total += temperature
+
+elif month.upper() in ['JANUARY', 'MARCH', 'MAY', 'JULY', 'AUGUST', 'OCTOBER', 'DECEMBER']:
+    for i in range(31):
+            if i+1 == 1:
+                date = str(i+1) + 'st ' + month.title() + ', ' + str(year)
+            elif i+1 == 2:
+                date = str(i+1) + 'nd ' + month.title() + ', ' + str(year)
+            elif i+1 == 3:
+                date = str(i+1) + 'rd ' + month.title() + ', ' + str(year)
+            else:
+                date = str(i+1) + 'th ' + month.title() + ', ' + str(year)
+
+            while True:
+                try:    
+                    temperature = float(input('Temperature for ' + month.title() + '-' + str(i+1) + ': '))
+                    if temperature >= -273.15: break
+                    else: print('This temperature is below absolute zero. Try again.')
+                except:
+                    print("Enter a valid numerical value!")
+                
+            temp[date] = temperature
+
+            count += 1
+            total += temperature
+
+else:
+    for i in range(30):
+            if i+1 == 1:
+                date = str(i+1) + 'st ' + month.title() + ', ' + str(year)
+            elif i+1 == 2:
+                date = str(i+1) + 'nd ' + month.title() + ', ' + str(year)
+            elif i+1 == 3:
+                date = str(i+1) + 'rd ' + month.title() + ', ' + str(year)
+            else:
+                date = str(i+1) + 'th ' + month.title() + ', ' + str(year)
+
+            while True:
+                try:    
+                    temperature = float(input('Temperature for ' + month.title() + '-' + str(i+1) + ': '))
+                    if temperature >= -273.15: break
+                    else: print('This temperature is below absolute zero. Try again.')
+                except:
+                    print("Enter a valid numerical value!")
+                
+            temp[date] = temperature
+
+            count += 1
+            total += temperature
+
+average = total / count
+max_values = max(temp.values())
+min_values = min(temp.values())
+
+max_keys = [key for key, value in temp.items() if value == max(temp.values())]
+min_keys = [key for key, value in temp.items() if value == min(temp.values())]
+
+
+print('\nAverage Temperature of ' + month.title() + ', ' + str(year) + ' was: ' + str(round(average, 3)) + 'C')
+print('Maximum Temperature of ' + month.title() + ', ' + str(year) + ' was: ' + str(max_values) + 'C. Date/s: ' + str(max_keys))
+print('Minimum Temperature of ' + month.title() + ', ' + str(year) + ' was: ' + str(min_values) + 'C. Date/s: ' + str(min_keys))
